@@ -66,6 +66,7 @@ import ShippingPage from '../../pages/Shipping'
 import PaymentOptionsPage from '../../pages/Payment/PaymentOptions'
 import CreditCardPage from '../../pages/Payment/CreditCard'
 import BoletoPage from '../../pages/Payment/Boleto'
+import PixPage from '../../pages/Payment/Pix'
 
 import CloseIcon from '../../images/checkout-close.svg'
 
@@ -679,6 +680,16 @@ class Checkout extends React.Component {
         </State>
         <State value="payment.singleBoleto">
           <BoletoPage
+            callbacks={singleBoletoCallbacks}
+            checkoutColors={this.props.checkoutColors}
+            enableCart={enableCart}
+            handlePreviousButton={this.navigatePreviousPage}
+            handleSubmit={this.handleFormSubmit}
+            transaction={transaction}
+          />
+        </State>
+        <State value="payment.singlePix">
+          <PixPage
             callbacks={singleBoletoCallbacks}
             checkoutColors={this.props.checkoutColors}
             enableCart={enableCart}

@@ -50,7 +50,7 @@ Pix.propTypes = {
   height: PropTypes.number.isRequired,
   fill: PropTypes.string.isRequired,
   viewBox: PropTypes.arrayOf(
-    PropTypes.string,
+    PropTypes.number,
   ).isRequired,
   gradient: PropTypes.shape({
     initial: PropTypes.string.isRequired,
