@@ -3851,11 +3851,6 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
-  integrity sha1-+zgB1FNGdknvNgPH1hoCvRKb3m0=
-
 classnames@2.2.6, classnames@^2.2.5:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
@@ -11805,15 +11800,6 @@ promzard@^0.3.0:
   dependencies:
     read "1"
 
-prop-types@15.6.0:
-  version "15.6.0"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
-  integrity sha1-zq8IMCL8RrSjX2nhPvda7Q1jmFY=
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.3.1"
-    object-assign "^4.1.1"
-
 prop-types@15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
@@ -12253,14 +12239,6 @@ react-motion@^0.5.2:
     performance-now "^0.2.0"
     prop-types "^15.5.8"
     raf "^3.1.0"
-
-react-payment-card-component@0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/react-payment-card-component/-/react-payment-card-component-0.2.1.tgz#44d568732cd3bc0bc76a1a4947601a3ce18a8a6e"
-  integrity sha512-TmzedX185wAmZiqa7tiZ5VDMKmikiPshvUVeJ0HpABgvHf+F81oBVr00Q8mO5Iy4zvZU3EMzoCQYxho4eOkWhw==
-  dependencies:
-    classnames "2.2.5"
-    prop-types "15.6.0"
 
 react-redux@5.0.7:
   version "5.0.7"

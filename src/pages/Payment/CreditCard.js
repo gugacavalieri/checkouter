@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
-import PaymentCard from 'react-payment-card-component'
 import ReactGA from 'react-ga'
 
 import {
@@ -21,6 +20,7 @@ import {
   values,
 } from 'ramda'
 
+import PaymentCard from '../../CardComponent'
 import Dropdown from '../../former-kit/Dropdown'
 import FormInput from '../../former-kit/FormInput'
 import Switch from '../../former-kit/Switch'
