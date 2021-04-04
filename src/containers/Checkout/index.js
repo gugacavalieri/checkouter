@@ -281,17 +281,25 @@ class Checkout extends React.Component {
   }
 
   replaceCardhashIfCardIdIsPresent = (response, creditCard) => {
+    const isUndefined = p => p === undefined
+    const filteredCreditCard = reject(isUndefined, creditCard)
+
     const addCardId = pipe(
       prop('cardId'),
       assoc('cardId', __, response),
       dissoc('card_hash')
     )
 
+    const remCardId = pipe(
+      always(response),
+      dissoc('cardId')
+    )
+
     return ifElse(
       has('cardId'),
       addCardId,
-      always(response)
-    )(creditCard)
+      remCardId
+    )(filteredCreditCard)
   }
 
   saveTransactionValues = (checkoutData) => {

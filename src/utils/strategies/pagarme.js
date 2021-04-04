@@ -1,5 +1,8 @@
+/* eslint-disable no-unused-vars */
 import {
   always,
+  omit,
+  assoc,
   applySpec,
   concat,
   cond,
@@ -25,6 +28,7 @@ import {
 import { formatToBRL, removeMask } from '../masks'
 import getCheckoutVersion from '../helpers/getCheckoutVersion'
 import URLS from './urls'
+import encryption from './pagarme-encryption'
 
 const apiVersion = '2017-08-28'
 const checkoutVersion = getCheckoutVersion()
@@ -252,6 +256,26 @@ const request = (data) => {
     getPaymentMethodData,
   )(data)
   const fullPayload = merge(paymentData, commonPayload)
+
+  if (propOr(true, 'createTransaction', data) === false) {
+    if (commonPayload.payment_method === 'credit_card') {
+      return encryption
+        .generateCardHash(paymentData, commonPayload.encryption_key)
+        .then(cardHash => (
+          assoc(
+            'card_hash',
+            cardHash,
+            omit([
+              'card_cvv',
+              'card_expiration_date',
+              'card_holder_name',
+              'card_number',
+            ], fullPayload)
+          )
+        ))
+    }
+    return Promise.resolve(fullPayload)
+  }
 
   const url = URLS.pagarme.transaction
 
