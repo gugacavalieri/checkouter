@@ -1,5 +1,5 @@
 import qs from 'querystringify'
-import NodeRSA from 'node-rsa'
+import { JSEncrypt } from 'jsencrypt'
 import URLS from './urls'
 
 const API_VERSION = '2017-08-28'
@@ -23,10 +23,9 @@ const requestEncryptionKey = (encryptionKey) => {
 const generateQueryString = cardInfo => qs.stringify(cardInfo)
 
 const encrypt = (cardString, publicKey, id) => {
-  const key = new NodeRSA(publicKey, {
-    encryptionScheme: 'pkcs1',
-  })
-  const encrypted = key.encrypt(cardString, 'base64')
+  const jsEncrypt = new JSEncrypt()
+  jsEncrypt.setPublicKey(publicKey)
+  const encrypted = jsEncrypt.encrypt(cardString)
   const cardHash = `${id}_${encrypted}`
   return cardHash
 }

@@ -52,15 +52,13 @@ describe('pagarme-encryption.test.js', () => {
       'BQIDAQAB\n' +
       '-----END PUBLIC KEY-----\n'
       const result = encryption.encrypt('card_number=4901720080344448&card_holder_name=Aardvark%20Silva&card_expiration_date=1213&card_cvv=314', key, 1234)
-      expect(result).toContain('1234_')
+      expect(result.match(/\d+_.+/)).toHaveLength(1)
     })
   })
   describe('generateCardHash', () => {
     it('should return an valid card hash', (done) => {
       encryption.generateCardHash(CARD_INFO, TEST_KEY).then((response) => {
-        expect(response).toContain('3848')
-        expect(response).toContain('_')
-        expect(response).toContain('==')
+        expect(response.match(/\d+_.+/)).toHaveLength(1)
         done()
       })
     })
