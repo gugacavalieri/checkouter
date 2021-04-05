@@ -30,6 +30,8 @@ const encrypt = (cardString, publicKey, id) => {
   return cardHash
 }
 
+// taken from:
+// https://docs.pagar.me/v1/reference#gerando-card_hash-manualmente
 // eslint-disable-next-line max-len
 const generateCardHash = (cardInfo, encryptionKey) => requestEncryptionKey(encryptionKey)
   .then((response) => {
