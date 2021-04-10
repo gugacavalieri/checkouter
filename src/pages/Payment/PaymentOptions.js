@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
-import ReactGA from 'react-ga'
-
 import {
   concat,
   contains,
@@ -93,8 +91,6 @@ class PaymentOptionsPage extends React.Component {
     if (onEnter) {
       onEnter()
     }
-
-    ReactGA.pageview('/paymentoptions')
 
     handleUpdateFinalAmount(amount)
   }

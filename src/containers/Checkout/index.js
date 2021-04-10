@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { State, withStatechart } from 'react-automata'
-import ReactGA from 'react-ga'
 import {
   __,
   always,
@@ -259,7 +258,6 @@ class Checkout extends React.Component {
     const acquirer = strategies[acquirerName]
     const apiData = assoc('creditCard', creditCard, this.props.apiData)
 
-    ReactGA.pageview('/loading')
     acquirer.prepare(apiData)
       .then((response) => {
         const [checkoutData, installments] = response
@@ -376,7 +374,6 @@ class Checkout extends React.Component {
     }
 
     if (!hasRequiredPageData(page, this.props)) {
-      ReactGA.pageview(`/${page}`)
       return
     }
 
@@ -394,7 +391,6 @@ class Checkout extends React.Component {
     const page = getActiveStep(value)
 
     if (!hasRequiredPageData(page, this.props)) {
-      ReactGA.pageview(`/${page}`)
       return
     }
 
@@ -508,11 +504,6 @@ class Checkout extends React.Component {
   close = () => {
     const { apiData, targetElement } = this.props
     const onClose = path(['callbacks', 'onClose'], apiData)
-
-    ReactGA.event({
-      category: 'Header',
-      action: 'Click - Close Button',
-    })
 
     this.setState({ closingEffect: true })
 

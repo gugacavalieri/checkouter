@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
-import ReactGA from 'react-ga'
-
 import {
   always,
   either,
@@ -99,8 +97,6 @@ class CreditCardPage extends Component {
     if (onEnter) {
       onEnter()
     }
-
-    ReactGA.pageview('/creaditcard')
 
     this.firstInput.focus()
   }
@@ -203,13 +199,6 @@ class CreditCardPage extends Component {
   handleSaveCartChange = () => {
     this.setState((previousState) => {
       const newSaveCart = !previousState.saveCart
-
-      ReactGA.event({
-        category: 'CreditCard',
-        action: 'Change Save Cart',
-        label: `${newSaveCart}`,
-      })
-
       return {
         ...previousState,
         saveCart: newSaveCart,

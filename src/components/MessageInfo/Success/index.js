@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
-import ReactGA from 'react-ga'
 import copy from 'copy-to-clipboard'
 import { propOr } from 'ramda'
 import classNames from 'classnames'
@@ -27,38 +26,21 @@ const formatExpirationAt = value => (
 
 const handleBarcodeCopy = barcode => (
   () => {
-    ReactGA.event({
-      category: 'Boleto',
-      action: 'Copy Bar Code',
-    })
-
     copy(barcode)
   }
 )
 
 const handleSeeOrder = url => () => {
-  ReactGA.event({
-    category: 'Success',
-    action: 'See order',
-  })
-
   return openLink(url)
 }
 
 const handleBoletoSaveFile = fileUrl =>
   () => {
-    ReactGA.event({
-      category: 'Boleto',
-      action: 'Download boleto',
-    })
-
     openLink(fileUrl)
   }
 
 class Success extends React.Component {
-  componentDidMount () {
-    ReactGA.pageview('/success')
-  }
+  componentDidMount () {}
 
   renderTexts = () => {
     const {
