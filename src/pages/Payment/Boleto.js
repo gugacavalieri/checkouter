@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import ReactGA from 'react-ga'
-
 import {
   __,
   always,
@@ -73,8 +71,6 @@ class Boleto extends React.PureComponent {
     if (onEnter) {
       onEnter()
     }
-
-    ReactGA.pageview('/boleto')
 
     if (discountValue) {
       handleUpdateFinalAmount(amount - finalDiscount)

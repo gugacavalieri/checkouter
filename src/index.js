@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ReactGA from 'react-ga'
 import {
   always,
   applySpec,
@@ -25,12 +24,6 @@ import setColors from './utils/helpers/setColors'
 import getParentElement from './utils/helpers/getParentElement'
 import { insertRelativePosition } from './utils/helpers/bodyCss'
 
-const isDevelopment = () => process.env.NODE_ENV === 'development'
-
-ReactGA.initialize('UA-44419105-12', {
-  debug: isDevelopment(),
-})
-
 function createFormListener (button) {
   const form = getParentElement(button, 'form')
 
@@ -46,8 +39,6 @@ function createFormListener (button) {
 const openCheckout = (apiData, clientThemeBase, form, colors) => {
   const {
     configs = {},
-    key,
-    token,
   } = apiData
 
   const { target = 'checkout-wrapper' } = configs
@@ -55,12 +46,6 @@ const openCheckout = (apiData, clientThemeBase, form, colors) => {
   const acquirerName = getStrategyName(apiData)
 
   const clientTarget = createElement('div', target, 'body')
-
-  ReactGA.event({
-    category: 'API',
-    action: 'Customer Key',
-    label: key || token,
-  })
 
   const apiErrors = ifElse(
     equals('pagarme'),

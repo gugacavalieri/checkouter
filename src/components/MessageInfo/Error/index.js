@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactGA from 'react-ga'
 
 import ThemeConsumer from '../../../former-kit/ThemeConsumer'
 import NavigateBack from '../../../images/navigate_back.svg'
@@ -10,9 +9,7 @@ import { Button } from '../..'
 const consumeTheme = ThemeConsumer('UIErrorMessageInfo')
 
 class Error extends React.Component {
-  componentDidMount () {
-    ReactGA.pageview('/error')
-  }
+  componentDidMount () {}
 
   getQuestions = (errors) => {
     const questions = {
@@ -38,11 +35,6 @@ class Error extends React.Component {
   checkForBoletoError = errors => JSON.stringify(errors).includes('boleto')
 
   checkPayment = () => {
-    ReactGA.event({
-      category: 'Error',
-      action: 'Retry',
-    })
-
     this.props.handlePreviousButton()()
   }
 
