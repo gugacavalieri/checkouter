@@ -15,7 +15,6 @@ export default class ErrorBoundary extends Component {
   }
 
   componentDidCatch (error, errorInfo) {
-
     if (process.env.NODE_ENV === 'production') {
       report(error, errorInfo)
     }

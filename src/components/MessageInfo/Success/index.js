@@ -30,9 +30,7 @@ const handleBarcodeCopy = barcode => (
   }
 )
 
-const handleSeeOrder = url => () => {
-  return openLink(url)
-}
+const handleSeeOrder = url => () => openLink(url)
 
 const handleBoletoSaveFile = fileUrl =>
   () => {
