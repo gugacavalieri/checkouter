@@ -245,7 +245,7 @@ class CustomerPage extends Component {
         }}
       >
         <h2 className={theme.title}>
-          Olá, precisamos dos seus dados básicos
+          Preencha seus dados para pagamento
         </h2>
         <div className={theme.content}>
           <FormInput
