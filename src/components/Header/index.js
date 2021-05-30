@@ -30,6 +30,7 @@ class Header extends React.Component {
       handlePreviousButton,
       logoAlt,
       logoSrc,
+      logoText,
       steps,
       theme,
     } = this.props
@@ -54,7 +55,7 @@ class Header extends React.Component {
                 src={logoSrc}
                 alt={logoAlt}
               />
-              : <div className={theme.safe}><LockpadIcon /><div>Finalizar Pagamento do Presente</div></div>
+              : <div className={theme.safe}><LockpadIcon /><div>{logoText}</div></div>
           }
           <CloseIcon
             className={theme.close}
@@ -84,6 +85,7 @@ Header.propTypes = {
   handlePreviousButton: PropTypes.func,
   logoAlt: PropTypes.string,
   logoSrc: PropTypes.string,
+  logoText: PropTypes.string,
   steps: PropTypes.arrayOf(PropTypes.object),
 }
 
@@ -94,6 +96,7 @@ Header.defaultProps = {
   handlePreviousButton: null,
   logoAlt: '',
   logoSrc: '',
+  logoText: 'Finalizar Pagamento',
   steps: [],
 }
 
