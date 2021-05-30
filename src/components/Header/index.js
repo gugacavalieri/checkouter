@@ -54,7 +54,7 @@ class Header extends React.Component {
                 src={logoSrc}
                 alt={logoAlt}
               />
-              : <div className={theme.safe}><LockpadIcon /><h3>Finalizar Compra</h3></div>
+              : <div className={theme.safe}><LockpadIcon /><div>Finalizar Pagamento do Presente</div></div>
           }
           <CloseIcon
             className={theme.close}
