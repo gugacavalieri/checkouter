@@ -205,6 +205,10 @@ class BillingPage extends Component {
             required,
             maxLength(40),
           ],
+          neighborhood: [
+            required,
+            maxLength(30),
+          ],
           city: [
             required,
             minLength(4),
@@ -229,13 +233,14 @@ class BillingPage extends Component {
             onChange={this.handleChangeZipcode}
             inputRef={this.setTextInputRef}
           />
-          <FormInput
-            disabled={isSearchingCPF}
-            label="Rua"
-            name="street"
-            placeholder="Digite o endereço"
-          />
           <div className={theme.inputGroup}>
+            <FormInput
+              className={theme.fieldStreet}
+              disabled={isSearchingCPF}
+              label="Rua"
+              name="street"
+              placeholder="Digite o endereço"
+            />
             <FormInput
               className={theme.fieldNumber}
               inputRef={this.handleNumberInputRef}
@@ -243,10 +248,17 @@ class BillingPage extends Component {
               name="number"
               type="number"
             />
+          </div>
+          <div className={theme.inputGroup}>
             <FormInput
               className={theme.fieldComplement}
               label="Complemento"
               name="complement"
+            />
+            <FormInput
+              className={theme.fieldNeighborhood}
+              label="Bairro"
+              name="neighborhood"
             />
           </div>
           <div className={theme.inputGroup}>

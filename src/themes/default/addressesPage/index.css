@@ -36,9 +36,14 @@
   align-items: center;
 }
 
+.fieldStreet,
+.fieldStreet input {
+  width: 70%;
+}
+
 .fieldNumber,
 .fieldNumber input {
-  width: 19%;
+  width: 25%;
 }
 
 /* stylelint-disable */
@@ -53,19 +58,24 @@
 }
 /* stylelint-enable */
 
+.fieldNeighborhood,
+.fieldNeighborhood input {
+  width: 55%;
+}
+
 .fieldComplement,
 .fieldComplement input {
-  width: 70%;
+  width: 40%;
 }
 
 .fieldCity,
 .fieldCity input {
-  width: 63%;
+  width: 70%;
 }
 
 .fieldState,
 .fieldState input {
-  width: 30%;
+  width: 25%;
 }
 
 .inputGroup {
