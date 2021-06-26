@@ -758,7 +758,8 @@ class Checkout extends React.Component {
     const enableCart = pathOr(false, ['configs', 'enableCart'], apiData)
     const companyName = pathOr('', ['configs', 'companyName'], apiData)
     const logo = pathOr('', ['configs', 'logo'], apiData)
-    const logoText = pathOr('', ['configs', 'logoText'], apiData)
+    const logoText = pathOr('Finalizar Compra',
+      ['configs', 'logoText'], apiData)
 
     const { shipping, customer } = pageInfo
 

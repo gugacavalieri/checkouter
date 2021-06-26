@@ -52,6 +52,11 @@ const parseBoletoData = applySpec({
   soft_descriptor: path(['payment', 'method', 'softDescriptor']),
 })
 
+const parsePixData = applySpec({
+  pix_expiration_date: path(['payment', 'method', 'expirationAt']),
+  soft_descriptor: path(['payment', 'method', 'softDescriptor']),
+})
+
 const parseToPayload = applySpec({
   encryption_key: prop('key'),
   postback_url: prop('postback'),
@@ -144,6 +149,8 @@ const getPaymentMethodData = (data) => {
       return parseBoletoData(data)
     case 'creditcard':
       return parseCreditcardData(data)
+    case 'pix':
+      return parsePixData(data)
     default:
       throw new Error('Payment method not supported.')
   }
