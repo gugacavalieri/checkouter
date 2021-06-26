@@ -165,7 +165,7 @@ class PaymentOptionsPage extends React.Component {
     return (
       <div className={theme.page}>
         <h2 className={theme.title}>
-          Como quer pagar?
+          Escolha a forma de pagamento
         </h2>
         <div className={
           classNames(

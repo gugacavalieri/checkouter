@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
@@ -10,6 +11,7 @@ import { ProgressBar } from '..'
 import ThemeConsumer from '../../former-kit/ThemeConsumer'
 import BackIcon from '../../images/navigate_back.svg'
 import CloseIcon from '../../images/closeX.svg'
+import LockpadIcon from '../../images/lockpad.svg'
 
 const consumeTheme = ThemeConsumer('UIHeader')
 
@@ -28,6 +30,7 @@ class Header extends React.Component {
       handlePreviousButton,
       logoAlt,
       logoSrc,
+      logoText,
       steps,
       theme,
     } = this.props
@@ -52,7 +55,7 @@ class Header extends React.Component {
                 src={logoSrc}
                 alt={logoAlt}
               />
-              : false
+              : <div className={theme.safe}><LockpadIcon /><div>{logoText}</div></div>
           }
           <CloseIcon
             className={theme.close}
@@ -82,6 +85,7 @@ Header.propTypes = {
   handlePreviousButton: PropTypes.func,
   logoAlt: PropTypes.string,
   logoSrc: PropTypes.string,
+  logoText: PropTypes.string,
   steps: PropTypes.arrayOf(PropTypes.object),
 }
 
@@ -92,6 +96,7 @@ Header.defaultProps = {
   handlePreviousButton: null,
   logoAlt: '',
   logoSrc: '',
+  logoText: 'Finalizar Pagamento',
   steps: [],
 }
 

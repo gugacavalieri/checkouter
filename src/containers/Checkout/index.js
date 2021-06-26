@@ -747,6 +747,7 @@ class Checkout extends React.Component {
     const enableCart = pathOr(false, ['configs', 'enableCart'], apiData)
     const companyName = pathOr('', ['configs', 'companyName'], apiData)
     const logo = pathOr('', ['configs', 'logo'], apiData)
+    const logoText = pathOr('', ['configs', 'logoText'], apiData)
 
     const { shipping, customer } = pageInfo
 
@@ -783,6 +784,7 @@ class Checkout extends React.Component {
             handlePreviousButton={this.navigatePreviousPage}
             logoAlt={companyName}
             logoSrc={logo}
+            logoText={logoText}
             steps={this.state.steps}
           />
           <main

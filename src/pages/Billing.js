@@ -218,7 +218,7 @@ class BillingPage extends Component {
         }}
       >
         <h2 className={theme.title}>
-          Qual é seu endereço de cobrança?
+          Preencha seu endereço
         </h2>
         <div className={theme.content}>
           <FormInput
