@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import {
   always,
-  applySpec,
+  omit,
   assoc,
+  applySpec,
   concat,
   cond,
   defaultTo,
@@ -12,7 +14,6 @@ import {
   map,
   merge,
   of,
-  omit,
   path,
   pathOr,
   pipe,
@@ -23,11 +24,11 @@ import {
   toString,
   values,
 } from 'ramda'
-import pagarme from 'pagarme'
 
 import { formatToBRL, removeMask } from '../masks'
 import getCheckoutVersion from '../helpers/getCheckoutVersion'
 import URLS from './urls'
+import encryption from './pagarme-encryption'
 
 const apiVersion = '2017-08-28'
 const checkoutVersion = getCheckoutVersion()
@@ -258,9 +259,8 @@ const request = (data) => {
 
   if (propOr(true, 'createTransaction', data) === false) {
     if (commonPayload.payment_method === 'credit_card') {
-      return pagarme.client
-        .connect({ encryption_key: commonPayload.encryption_key })
-        .then(client => client.security.encrypt(paymentData))
+      return encryption
+        .generateCardHash(paymentData, commonPayload.encryption_key)
         .then(cardHash => (
           assoc(
             'card_hash',
@@ -274,7 +274,6 @@ const request = (data) => {
           )
         ))
     }
-
     return Promise.resolve(fullPayload)
   }
 

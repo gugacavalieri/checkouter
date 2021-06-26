@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { ThemeConsumer } from 'former-kit'
-import ReactGA from 'react-ga'
-
 import {
   __,
   always,
@@ -19,6 +16,7 @@ import {
   prop,
 } from 'ramda'
 
+import ThemeConsumer from '../../former-kit/ThemeConsumer'
 import { NavigationBar } from '../../components'
 import {
   addPageInfo,
@@ -73,8 +71,6 @@ class Boleto extends React.PureComponent {
     if (onEnter) {
       onEnter()
     }
-
-    ReactGA.pageview('/boleto')
 
     if (discountValue) {
       handleUpdateFinalAmount(amount - finalDiscount)

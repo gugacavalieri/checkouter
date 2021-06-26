@@ -2,10 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { ThemeConsumer } from 'former-kit'
 import { connect } from 'react-redux'
 import { State, withStatechart } from 'react-automata'
-import ReactGA from 'react-ga'
 import {
   __,
   always,
@@ -35,6 +33,7 @@ import {
   type,
 } from 'ramda'
 
+import ThemeConsumer from '../../former-kit/ThemeConsumer'
 import {
   addInstallments,
   addPageInfo,
@@ -260,7 +259,6 @@ class Checkout extends React.Component {
     const acquirer = strategies[acquirerName]
     const apiData = assoc('creditCard', creditCard, this.props.apiData)
 
-    ReactGA.pageview('/loading')
     acquirer.prepare(apiData)
       .then((response) => {
         const [checkoutData, installments] = response
@@ -282,17 +280,25 @@ class Checkout extends React.Component {
   }
 
   replaceCardhashIfCardIdIsPresent = (response, creditCard) => {
+    const isUndefined = p => p === undefined
+    const filteredCreditCard = reject(isUndefined, creditCard)
+
     const addCardId = pipe(
       prop('cardId'),
       assoc('cardId', __, response),
       dissoc('card_hash')
     )
 
+    const remCardId = pipe(
+      always(response),
+      dissoc('cardId')
+    )
+
     return ifElse(
       has('cardId'),
       addCardId,
-      always(response)
-    )(creditCard)
+      remCardId
+    )(filteredCreditCard)
   }
 
   saveTransactionValues = (checkoutData) => {
@@ -369,7 +375,6 @@ class Checkout extends React.Component {
     }
 
     if (!hasRequiredPageData(page, this.props)) {
-      ReactGA.pageview(`/${page}`)
       return
     }
 
@@ -387,7 +392,6 @@ class Checkout extends React.Component {
     const page = getActiveStep(value)
 
     if (!hasRequiredPageData(page, this.props)) {
-      ReactGA.pageview(`/${page}`)
       return
     }
 
@@ -501,11 +505,6 @@ class Checkout extends React.Component {
   close = () => {
     const { apiData, targetElement } = this.props
     const onClose = path(['callbacks', 'onClose'], apiData)
-
-    ReactGA.event({
-      category: 'Header',
-      action: 'Click - Close Button',
-    })
 
     this.setState({ closingEffect: true })
 
@@ -759,6 +758,7 @@ class Checkout extends React.Component {
     const enableCart = pathOr(false, ['configs', 'enableCart'], apiData)
     const companyName = pathOr('', ['configs', 'companyName'], apiData)
     const logo = pathOr('', ['configs', 'logo'], apiData)
+    const logoText = pathOr('', ['configs', 'logoText'], apiData)
 
     const { shipping, customer } = pageInfo
 
@@ -795,6 +795,7 @@ class Checkout extends React.Component {
             handlePreviousButton={this.navigatePreviousPage}
             logoAlt={companyName}
             logoSrc={logo}
+            logoText={logoText}
             steps={this.state.steps}
           />
           <main

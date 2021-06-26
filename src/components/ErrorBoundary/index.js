@@ -3,7 +3,6 @@ import {
   node,
   element,
 } from 'prop-types'
-import ReactGA from 'react-ga'
 
 import report from './ErrorReport'
 
@@ -16,12 +15,6 @@ export default class ErrorBoundary extends Component {
   }
 
   componentDidCatch (error, errorInfo) {
-    ReactGA.event({
-      category: 'Error Boundary',
-      action: error.message,
-      label: `Ambiente - ${process.env.NODE_ENV}`,
-    })
-
     if (process.env.NODE_ENV === 'production') {
       report(error, errorInfo)
     }

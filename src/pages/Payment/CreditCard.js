@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
-import PaymentCard from 'react-payment-card-component'
-import ReactGA from 'react-ga'
-
 import {
   always,
   either,
@@ -21,12 +18,11 @@ import {
   values,
 } from 'ramda'
 
-import {
-  Dropdown,
-  FormInput,
-  Switch,
-  ThemeConsumer,
-} from 'former-kit'
+import PaymentCard from '../../CardComponent'
+import Dropdown from '../../former-kit/Dropdown'
+import FormInput from '../../former-kit/FormInput'
+import Switch from '../../former-kit/Switch'
+import ThemeConsumer from '../../former-kit/ThemeConsumer'
 
 import {
   isFormValid,
@@ -101,8 +97,6 @@ class CreditCardPage extends Component {
     if (onEnter) {
       onEnter()
     }
-
-    ReactGA.pageview('/creaditcard')
 
     this.firstInput.focus()
   }
@@ -205,13 +199,6 @@ class CreditCardPage extends Component {
   handleSaveCartChange = () => {
     this.setState((previousState) => {
       const newSaveCart = !previousState.saveCart
-
-      ReactGA.event({
-        category: 'CreditCard',
-        action: 'Change Save Cart',
-        label: `${newSaveCart}`,
-      })
-
       return {
         ...previousState,
         saveCart: newSaveCart,

@@ -11,5 +11,6 @@ export default {
     transaction: `${pagarme}transactions`,
     installments: `${pagarme}transactions/calculate_installments_amount`,
     cards: `${pagarme}cards`,
+    cardHashKey: `${pagarme}transactions/card_hash_key`,
   },
 }

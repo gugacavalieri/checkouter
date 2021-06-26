@@ -32,7 +32,7 @@ export default {
         borderColor: '#acacac',
       },
       title: {
-        color: '#ADADAD',
+        color: '#797979',
       },
       subtitle: {
         color: '#acacac',

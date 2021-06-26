@@ -1,8 +1,5 @@
-import '@babel/polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ReactGA from 'react-ga'
-import moment from 'moment'
 import {
   always,
   applySpec,
@@ -14,7 +11,6 @@ import {
   pipe,
   split,
 } from 'ramda'
-import 'moment/locale/pt-br'
 
 import App from './App'
 import createStore from './redux/store'
@@ -27,14 +23,6 @@ import setTheme from './utils/helpers/setTheme'
 import setColors from './utils/helpers/setColors'
 import getParentElement from './utils/helpers/getParentElement'
 import { insertRelativePosition } from './utils/helpers/bodyCss'
-
-moment.locale('pt-br')
-
-const isDevelopment = () => process.env.NODE_ENV === 'development'
-
-ReactGA.initialize('UA-44419105-12', {
-  debug: isDevelopment(),
-})
 
 function createFormListener (button) {
   const form = getParentElement(button, 'form')
@@ -51,8 +39,6 @@ function createFormListener (button) {
 const openCheckout = (apiData, clientThemeBase, form, colors) => {
   const {
     configs = {},
-    key,
-    token,
   } = apiData
 
   const { target = 'checkout-wrapper' } = configs
@@ -60,12 +46,6 @@ const openCheckout = (apiData, clientThemeBase, form, colors) => {
   const acquirerName = getStrategyName(apiData)
 
   const clientTarget = createElement('div', target, 'body')
-
-  ReactGA.event({
-    category: 'API',
-    action: 'Customer Key',
-    label: key || token,
-  })
 
   const apiErrors = ifElse(
     equals('pagarme'),

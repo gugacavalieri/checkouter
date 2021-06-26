@@ -6,7 +6,7 @@
 
 .wrapper {
   display: inline-flex;
-  max-width: 213px;
+  max-width: 250px;
 }
 
 .wrapper,
@@ -15,7 +15,7 @@
 }
 
 .wrapper button {
-  width: 205px;
+  width: 250px;
   height: 76px;
   border: 2px solid var(--action-button-border);
   border-radius: 5px;
@@ -76,5 +76,5 @@
 
 .title,
 .subtitle {
-  font-size: 10px;
+  font-size: 12px;
 }

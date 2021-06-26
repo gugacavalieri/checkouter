@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
-import { ThemeConsumer } from 'former-kit'
-import ReactGA from 'react-ga'
+import dayjs from 'dayjs'
 import copy from 'copy-to-clipboard'
 import { propOr } from 'ramda'
 import classNames from 'classnames'
 
+import ThemeConsumer from '../../../former-kit/ThemeConsumer'
 import { ActionButton, Button } from './../../'
 import { formatToBRL } from '../../../utils/masks/'
 import SuccessIcon from '../../../images/confirmacao_sucesso.svg'
@@ -21,44 +20,25 @@ const openLink = url => window.open(url, '_blank')
 
 const formatExpirationAt = value => (
   value
-    ? moment(value).format('L')
-    : moment().add(1, 'days').format('L')
+    ? dayjs(value).format('L')
+    : dayjs(value).add(1, 'days').format('L')
 )
 
 const handleBarcodeCopy = barcode => (
   () => {
-    ReactGA.event({
-      category: 'Boleto',
-      action: 'Copy Bar Code',
-    })
-
     copy(barcode)
   }
 )
 
-const handleSeeOrder = url => () => {
-  ReactGA.event({
-    category: 'Success',
-    action: 'See order',
-  })
-
-  return openLink(url)
-}
+const handleSeeOrder = url => () => openLink(url)
 
 const handleBoletoSaveFile = fileUrl =>
   () => {
-    ReactGA.event({
-      category: 'Boleto',
-      action: 'Download boleto',
-    })
-
     openLink(fileUrl)
   }
 
 class Success extends React.Component {
-  componentDidMount () {
-    ReactGA.pageview('/success')
-  }
+  componentDidMount () {}
 
   renderTexts = () => {
     const {

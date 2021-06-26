@@ -1,29 +1,24 @@
 import React from 'react'
 
-import UserIcon from '../../images/user.svg'
-import MapIcon from '../../images/map.svg'
-import PaymentIcon from '../../images/payment.svg'
-import ConfirmationIcon from '../../images/confirmation.svg'
-
 export default [
   {
     page: 'customer',
-    title: 'Identificação',
-    icon: <UserIcon />,
+    title: '',
+    icon: <div />,
   },
   {
     page: 'addresses',
-    title: 'Endereços',
-    icon: <MapIcon />,
+    title: '',
+    icon: <div />,
   },
   {
     page: 'payment',
-    title: 'Forma de Pagamento',
-    icon: <PaymentIcon />,
+    title: '',
+    icon: <div />,
   },
   {
     page: 'confirmation',
-    title: 'Confirmação',
-    icon: <ConfirmationIcon />,
+    title: '',
+    icon: <div />,
   },
 ]

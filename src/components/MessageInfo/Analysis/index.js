@@ -1,18 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ThemeConsumer } from 'former-kit'
-import ReactGA from 'react-ga'
 
 import { Button } from '../..'
+import ThemeConsumer from '../../../former-kit/ThemeConsumer'
 
 import AnalysisImage from '../../../images/confirmacao_analise.svg'
 
 const consumeTheme = ThemeConsumer('UIAnalysisMessageInfo')
 
 class Analysis extends React.Component {
-  componentDidMount () {
-    ReactGA.pageview('/analysis')
-  }
+  componentDidMount () {}
 
   render () {
     const {
