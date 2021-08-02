@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const paths = require('./paths')
+const packageJson = require('../package.json')
 const postcssUrlRebase = require('./postcssUrlRebase')
 const stylelint = require('stylelint')
 const CompressionPlugin = require('compression-webpack-plugin')
@@ -62,7 +63,7 @@ module.exports = {
   ],
   output: {
     path: paths.appBuild,
-    filename: './index.js',
+    filename: `eunenem-checkout-${packageJson.version}.js`,
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
