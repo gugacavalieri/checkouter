@@ -613,6 +613,7 @@ class Checkout extends React.Component {
     const selectionCallbacks = prop('selection', paymentCallbacks)
     const singleCreditcardCallbacks = prop('singleCreditcard', paymentCallbacks)
     const singleBoletoCallbacks = prop('singleBoleto', paymentCallbacks)
+    const singlePixCallbacks = prop('singlePix', paymentCallbacks)
     const boletoTexts = getBoletoInformations(this)
     const { transactionErrors } = this.state
 
@@ -689,7 +690,7 @@ class Checkout extends React.Component {
         </State>
         <State value="payment.singlePix">
           <PixPage
-            callbacks={singleBoletoCallbacks}
+            callbacks={singlePixCallbacks}
             checkoutColors={this.props.checkoutColors}
             enableCart={enableCart}
             handlePreviousButton={this.navigatePreviousPage}
