@@ -4,19 +4,14 @@ import { connect } from 'react-redux'
 import {
   allPass,
   always,
-  anyPass,
   dissoc,
   cond,
   contains,
-  equals,
   isEmpty,
-  match,
   merge,
-  path,
   pipe,
   prop,
   propOr,
-  replace,
 } from 'ramda'
 
 import ThemeConsumer from '../former-kit/ThemeConsumer'
@@ -43,8 +38,6 @@ const defaultCustomerInfo = {
   name: '',
   phoneNumber: '',
 }
-
-const clean = replace(/[^0-9]/g, '')
 
 const documentValidationsAndMasks = {
   CPF: {
@@ -115,8 +108,6 @@ class CustomerPage extends Component {
     this.firstInput.focus()
   }
 
-  changePress = 0 // eslint-disable-line react/sort-comp
-
   componentWillUnmount () {
     const { customer, callbacks, handlePageChange } = this.props
     const onExit = prop('onExit', callbacks)
@@ -146,46 +137,11 @@ class CustomerPage extends Component {
     this.props.handleSubmit(values, errors)
   }
 
-  handleDocumentNumber = (event) => {
-    const { key } = event
-    let value = clean(path(['target', 'value'], event))
-    const documentLength = value.length
-    const hasDocumentReachedLengthLimit = documentLength >= 11
-
-    const pressedNumber = match(/[0-9]/)
-    const pressedBackspace = equals('Backspace')
-    const pressedDelete = equals('Delete')
-
-    const shouldUpdate = anyPass([
-      pressedNumber,
-      pressedBackspace,
-      pressedDelete,
-    ])
-
-    if (!shouldUpdate(key)) {
-      return
-    }
-
-    if (hasDocumentReachedLengthLimit) {
-      this.changePress += 1
-    } else {
-      this.changePress = 0
-    }
-
-    if (this.changePress > 1 && documentLength === 11) {
-      value = `${value}${key}`
-    }
-
-    const document = this.changePress > 1 ? 'CNPJ' : 'CPF'
-
-    this.setState({
-      document,
-    }, () => {
-      this.setState({
-        documentNumber: value,
-      })
-    })
-  }
+  toggleDocumentType = () => {
+    const currentDocument = this.state.document
+    const document = currentDocument === 'CPF' ? 'CNPJ' : 'CPF'
+    this.setState({ document })
+  };
 
   render () {
     const {
@@ -199,7 +155,6 @@ class CustomerPage extends Component {
       email,
       name,
       phoneNumber,
-      documentLabel,
     } = this.state
 
     const { mask, validation } = documentValidationsAndMasks[document]
@@ -235,7 +190,7 @@ class CustomerPage extends Component {
           ],
           documentNumber: [
             required,
-            value => (validation(value) ? `${documentLabel} inválido` : false),
+            value => (validation(value) ? `${document} inválido` : false),
           ],
           phoneNumber: [
             required,
@@ -259,13 +214,17 @@ class CustomerPage extends Component {
             name="email"
             placeholder="Digite seu e-mail"
           />
-          <FormInput
-            label={documentLabel}
-            mask={mask}
-            name="documentNumber"
-            onKeyUp={this.handleDocumentNumber}
-            placeholder={`Digite seu ${documentLabel}`}
-          />
+          <div className={theme.inputGroup}>
+            <FormInput
+              label={`${document}`}
+              mask={mask}
+              name="documentNumber"
+              placeholder={`Digite seu ${document}`}
+            />
+            <div style={{ float: 'right', 'margin-top': '5px  ' }}>
+              <input type="checkbox" onChange={this.toggleDocumentType} />CNPJ
+            </div>
+          </div>
           <FormInput
             label="DDD + Telefone"
             mask="(11) 11111-1111"
