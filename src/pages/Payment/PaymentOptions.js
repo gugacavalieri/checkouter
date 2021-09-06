@@ -20,6 +20,7 @@ import ThemeConsumer from '../../former-kit/ThemeConsumer'
 
 import BoletoIcon from '../../components/Svg/Boleto'
 import CreditCardIcon from '../../components/Svg/CreditCard'
+import PixIcon from '../../components/Svg/Pix'
 import TwoCreditCards from '../../images/two-credit-cards.svg'
 import CradiCardMoreBoleto from '../../images/credit-card-more-boleto.svg'
 
@@ -67,6 +68,20 @@ const allowedOptions = props => [
       }}
     />,
     transitionTo: 'SINGLE_BOLETO',
+  },
+  {
+    paymentType: 'pix',
+    title: 'PIX',
+    icon: <PixIcon
+      width={700}
+      height={700}
+      viewBox={[700, 700]}
+      gradient={{
+        initial: props.checkoutColors.primaryColor,
+        final: props.checkoutColors.secondaryColor,
+      }}
+    />,
+    transitionTo: 'SINGLE_PIX',
   },
 ]
 

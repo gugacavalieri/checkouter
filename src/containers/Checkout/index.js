@@ -65,6 +65,7 @@ import ShippingPage from '../../pages/Shipping'
 import PaymentOptionsPage from '../../pages/Payment/PaymentOptions'
 import CreditCardPage from '../../pages/Payment/CreditCard'
 import BoletoPage from '../../pages/Payment/Boleto'
+import PixPage from '../../pages/Payment/Pix'
 
 import CloseIcon from '../../images/checkout-close.svg'
 
@@ -612,6 +613,7 @@ class Checkout extends React.Component {
     const selectionCallbacks = prop('selection', paymentCallbacks)
     const singleCreditcardCallbacks = prop('singleCreditcard', paymentCallbacks)
     const singleBoletoCallbacks = prop('singleBoleto', paymentCallbacks)
+    const singlePixCallbacks = prop('singlePix', paymentCallbacks)
     const boletoTexts = getBoletoInformations(this)
     const { transactionErrors } = this.state
 
@@ -686,6 +688,16 @@ class Checkout extends React.Component {
             transaction={transaction}
           />
         </State>
+        <State value="payment.singlePix">
+          <PixPage
+            callbacks={singlePixCallbacks}
+            checkoutColors={this.props.checkoutColors}
+            enableCart={enableCart}
+            handlePreviousButton={this.navigatePreviousPage}
+            handleSubmit={this.handleFormSubmit}
+            transaction={transaction}
+          />
+        </State>
         <State value="confirmation.transaction">
           <LoadingInfo
             subtitle="Aguenta firme, é rapidinho"
@@ -747,7 +759,8 @@ class Checkout extends React.Component {
     const enableCart = pathOr(false, ['configs', 'enableCart'], apiData)
     const companyName = pathOr('', ['configs', 'companyName'], apiData)
     const logo = pathOr('', ['configs', 'logo'], apiData)
-    const logoText = pathOr('', ['configs', 'logoText'], apiData)
+    const logoText = pathOr('Finalizar Compra',
+      ['configs', 'logoText'], apiData)
 
     const { shipping, customer } = pageInfo
 

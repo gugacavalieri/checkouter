@@ -21,6 +21,7 @@ const paymentStates = {
       on: {
         SINGLE_CREDITCARD: 'singleCreditCard',
         SINGLE_BOLETO: 'singleBoleto',
+        SINGLE_PIX: 'singlePix',
         CREDITCARD_AND_BOLETO: 'creditCardAndBoleto',
         MULTIPLE_CREDITCARDS: 'multipleCreditCards',
       },
@@ -32,6 +33,12 @@ const paymentStates = {
       },
     },
     singleBoleto: {
+      on: {
+        SELECTION: 'selection',
+        TRANSACTION: 'transaction',
+      },
+    },
+    singlePix: {
       on: {
         SELECTION: 'selection',
         TRANSACTION: 'transaction',
