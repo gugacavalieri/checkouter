@@ -224,8 +224,7 @@ class CustomerPage extends Component {
             {this.props.customer && this.props.customer.allowedDocuments
               && this.props.customer.allowedDocuments.includes('CNPJ') &&
               <div style={{ float: 'right', 'margin-top': '5px  ' }}>
-                <input type="checkbox" onChange={this.toggleDocumentType} />
-                CNPJ
+                <input type="checkbox" onChange={this.toggleDocumentType} />CNPJ
               </div>
             }
           </div>
