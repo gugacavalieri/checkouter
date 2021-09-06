@@ -221,9 +221,13 @@ class CustomerPage extends Component {
               name="documentNumber"
               placeholder={`Digite seu ${document}`}
             />
-            <div style={{ float: 'right', 'margin-top': '5px  ' }}>
-              <input type="checkbox" onChange={this.toggleDocumentType} />CNPJ
-            </div>
+            {this.props.customer && this.props.customer.allowedDocuments
+              && this.props.customer.allowedDocuments.includes('CNPJ') &&
+              <div style={{ float: 'right', 'margin-top': '5px  ' }}>
+                <input type="checkbox" onChange={this.toggleDocumentType} />
+                CNPJ
+              </div>
+            }
           </div>
           <FormInput
             label="DDD + Telefone"
@@ -256,6 +260,7 @@ CustomerPage.propTypes = {
     email: PropTypes.string,
     documentNumber: PropTypes.string,
     phoneNumber: PropTypes.string,
+    allowedDocuments: PropTypes.array,
   }),
   callbacks: PropTypes.shape({
     onEnter: PropTypes.func,
