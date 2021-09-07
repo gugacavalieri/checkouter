@@ -9,9 +9,11 @@ import {
   contains,
   isEmpty,
   merge,
+  path,
   pipe,
   prop,
   propOr,
+  replace,
 } from 'ramda'
 
 import ThemeConsumer from '../former-kit/ThemeConsumer'
@@ -38,6 +40,8 @@ const defaultCustomerInfo = {
   name: '',
   phoneNumber: '',
 }
+
+const clean = replace(/[^0-9]/g, '')
 
 const documentValidationsAndMasks = {
   CPF: {
@@ -143,6 +147,13 @@ class CustomerPage extends Component {
     this.setState({ document })
   };
 
+  handleDocumentNumber = (event) => {
+    const value = clean(path(['target', 'value'], event))
+    this.setState({
+      documentNumber: value,
+    })
+  }
+
   render () {
     const {
       theme,
@@ -219,6 +230,7 @@ class CustomerPage extends Component {
               label={`${document}`}
               mask={mask}
               name="documentNumber"
+              onKeyUp={this.handleDocumentNumber}
               placeholder={`Digite seu ${document}`}
             />
             {this.props.customer && this.props.customer.allowedDocuments
