@@ -10,61 +10,61 @@
 }
 
 .bb-ourocard-black {
-  composes: bankLogo;
+  composes: bankLogo; /* stylelint-disable-line property-no-unknown */
   width: 40px;
   top: 15px;
   left: 30px;
 }
 
 .bradesco-normal-black {
-  composes: bankLogo;
+  composes: bankLogo; /* stylelint-disable-line property-no-unknown */
   top: 15px;
   left: 30px;
 }
 
 .bradesco-prime-black {
-  composes: bankLogo;
+  composes: bankLogo; /* stylelint-disable-line property-no-unknown */
   top: -20px;
   left: 13px;
   width: 140px;
 }
 
 .caixa-normal-black {
-  composes: bankLogo;
+  composes: bankLogo; /* stylelint-disable-line property-no-unknown */
   top: 20px;
   left: 205px;
 }
 
 .itau-normal-black {
-  composes: bankLogo;
+  composes: bankLogo; /* stylelint-disable-line property-no-unknown */
   width: 300px;
   top: -20px;
   left: 25px;
 }
 
 .itau-personnalite-black {
-  composes: bankLogo;
+  composes: bankLogo; /* stylelint-disable-line property-no-unknown */
   width: 70px;
   top: 20px;
   left: 140px;
 }
 
 .nubank {
-  composes: bankLogo;
+  composes: bankLogo; /* stylelint-disable-line property-no-unknown */
   top: 15px;
   left: 115px;
 }
 
 .nubank-normal-gold {
-  composes: nubank;
+  composes: nubank; /* stylelint-disable-line property-no-unknown */
 }
 
 .nubank-normal-platinum {
-  composes: nubank;
+  composes: nubank; /* stylelint-disable-line property-no-unknown */
 }
 
 .santander-normal-black {
-  composes: bankLogo;
+  composes: bankLogo; /* stylelint-disable-line property-no-unknown */
   top: 15px;
   left: 20px;
 }
