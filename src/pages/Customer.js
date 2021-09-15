@@ -192,7 +192,7 @@ class CustomerPage extends Component {
         validation={{
           name: [
             required,
-            maxLength(30),
+            maxLength(60),
           ],
           email: [
             required,
