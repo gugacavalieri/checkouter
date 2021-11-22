@@ -207,7 +207,7 @@ class BillingPage extends Component {
           ],
           city: [
             required,
-            minLength(4),
+            minLength(2),
             maxLength(25),
           ],
           state: [
