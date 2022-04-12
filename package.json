@@ -10,7 +10,7 @@
   "homepage": "https://github.com/pagarme/artis",
   "bugs": "https://github.com/pagarme/artis/issues",
   "dependencies": {
-    "cep-promise": "3.0.5",
+    "cep-promise": "4.1.2",
     "classnames": "2.2.6",
     "colr": "1.2.2",
     "copy-to-clipboard": "3.3.1",
